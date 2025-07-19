@@ -93,10 +93,10 @@ WSGI_APPLICATION = 'soc_media_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'd2bay',
         'USER': 'leahie',
         'PASSWORD': os.getenv('PASSWORD'),
-        'HOST': 'd2baydb.c5w4k8ogqypx.us-east-2.rds.amazonaws.com',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }
@@ -153,3 +153,5 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+AUTH_USER_MODEL = 'users.CustomUser'
