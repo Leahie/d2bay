@@ -1,6 +1,6 @@
 'use client'
 import { createContext, useState, useContext, useEffect, useCallback } from "react"
-import { useRouter } from "next/router"
+import { useRouter } from 'next/navigation'
 import {jwtDecode} from 'jwt-decode'
 
 const AuthContext = createContext();
@@ -18,7 +18,7 @@ export const AuthProvider = ({children}) => {
         }
 
         try{
-            const response = await fetch(`${process.env.BACKEND_API_KEY}/token/refresh/`, {
+            const response = await fetch(`http://127.0.0.1:8000/api/token/refresh/`, {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json'
@@ -45,18 +45,19 @@ export const AuthProvider = ({children}) => {
 
     const registerUser = async (userData) => {
         try {
-            const response = await fetch(`${process.env.BACKEND_API_KEY}/register`, {
+            const response = await fetch(`http://127.0.0.1:8000/api/register/`, {
                 method: 'POST', 
-                header: {
+                headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(userData)
             })
-            
+            console.log(response)
             if (response.ok){
                 return {success:true};
             } else {
                 const data = await response.json();
+                
                 return {success:false, errors: data};
             }
         } catch (error) {
@@ -67,7 +68,7 @@ export const AuthProvider = ({children}) => {
 
     const loginUser = async(credentials) => {
         try {
-            const response = await fetch(`${process.env.BACKEND_API_KEY}/token/`, {
+            const response = await fetch(`http://127.0.0.1:8000/api/token/`, {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json'

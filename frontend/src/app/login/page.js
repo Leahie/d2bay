@@ -1,10 +1,10 @@
 'use client'
 import { useState } from 'react'
-import { useAuth } from '../../context/AuthContext'
+import { useAuth } from '@/context/AuthContext'
 import Link from 'next/link'
 
 export default function Login() {
-  const [credentials, setCredentials] = useState({ email: '', password: '' })
+  const [credentials, setCredentials] = useState({ username: '', password: '' })
   const { loginUser } = useAuth()
 
   const handleSubmit = (e) => {
@@ -23,19 +23,19 @@ export default function Login() {
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label htmlFor="email" className="sr-only">
-                Email address
+              <label htmlFor="username" className="sr-only">
+                Username 
               </label>
               <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
+                id="username"
+                name="username"
+                type="username"
+                autoComplete="username"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-                value={credentials.email}
-                onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
+                placeholder="Username"
+                value={credentials.username}
+                onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
               />
             </div>
             <div>
