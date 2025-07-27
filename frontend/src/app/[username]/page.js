@@ -23,9 +23,10 @@ export default function UserPage(){
 
     return (
         <>
+        
         <a href="/">Home</a>
         <h1>{user.username}</h1>
-        {isOwner ? <button>Edit</button> : <></> }
+        {isOwner ? <a href="/settings/profile">Edit</a> : <></> }
         </>
     )
 }
