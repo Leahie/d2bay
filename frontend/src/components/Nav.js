@@ -34,8 +34,10 @@ export default function Nav(props){
                     <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Logo</span>
                     </a>
                 </div>
-                <div className="flex items-center">
+                {/* Beginning of Profile Picture Section */}
+                <div className="flex items-center px-4">
                     <div className="flex items-center ms-3">
+                        {user ? 
                         <div className="relative" ref={dropdownRef}>
                             <button
                             onClick={() => setOpenDropdown(!openDropdown)}
@@ -65,9 +67,10 @@ export default function Nav(props){
                                 </ul>
                             </div>
                             )}
-                        </div>
+                        </div> : <a className='' href="/login">Login/Signup</a>}
                     </div>
                 </div>
+                {/* End of Profile Picture Section */}
             </div>
         </div>
     </nav>

@@ -18,6 +18,7 @@ export default function EditProfile() {
         if (!loading){
             const fetchUser = async () => {
                     const response = await getUser(user?.username);
+                    console.log("Fetched user data:", response);
                     setProfile(response);
                 }
             fetchUser();

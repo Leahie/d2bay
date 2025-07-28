@@ -66,7 +66,7 @@ export const AuthProvider = ({children}) => {
         }
     }
 
-    const loginUser = async(credentials) => {
+    const loginUser = async(credentials, previousUrl) => {
         try {
             const response = await fetch(`http://127.0.0.1:8000/api/token/`, {
                 method: 'POST', 
@@ -82,7 +82,7 @@ export const AuthProvider = ({children}) => {
                 setUser(jwtDecode(data.access));
                 localStorage.setItem('authTokens', JSON.stringify(data));
                 document.cookie = `auth_token=${data.access}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Strict; Secure`;
-                router.push('/')
+                router.push(previousUrl)
                 return {success:true};
             } else {
                 return {success:false, errors: data};

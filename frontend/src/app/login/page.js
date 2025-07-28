@@ -1,16 +1,39 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '@/context/AuthContext'
 import Link from 'next/link'
 
 export default function Login() {
   const [credentials, setCredentials] = useState({ username: '', password: '' })
-  const { loginUser } = useAuth()
+  const [previousUrl, setPreviousUrl] = useState('/')
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const { loginUser, user } = useAuth()
+
+  const handleSubmit = async(e) => {
+    setError(null);
     e.preventDefault()
-    loginUser(credentials)
+    try {
+      const response = await loginUser(credentials, previousUrl);
+      if (response.errors != null){
+        throw new Error('Failed to sign in, please check your credentials')
+      }
+      console.log("noncontext", response)
+    } catch (error) {
+      setError(error.message);
+    }
+    
   }
+
+  useEffect(() => {
+    const temp = document.referrer;
+    console.log("Previous URL:", temp);
+    if (temp && temp !== window.location.href && temp !== '/register') {
+      setPreviousUrl(temp)
+    } else {
+      setPreviousUrl('/')
+    }
+  }, [])
 
   return (
     <div className="h-[calc(100vh-var(--navbar-height))] flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -54,6 +77,9 @@ export default function Login() {
                 onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
               />
             </div>
+          </div>
+          <div>
+            <p className='text-red-500 text-sm'>{error}</p>
           </div>
 
           <div>
