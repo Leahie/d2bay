@@ -21,7 +21,7 @@ export default function Home() {
 
   return (<>
       <Nav />
-      <div className="ml-[15%]">
+      <div className="box">
         <h1>Users</h1>
         <div className="m-4 font-[family-name:var(--font-geist-sans)]">
             {users.map((item, index)=>(

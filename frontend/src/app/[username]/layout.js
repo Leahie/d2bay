@@ -7,7 +7,7 @@ export default function layout({
     return (
         <section>
         <Nav page = {1} />
-        <div className="ml-[15%]">
+        <div className="box">
             {children}
         </div>
         </section>
