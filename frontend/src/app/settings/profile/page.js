@@ -11,7 +11,7 @@ export default function EditProfile() {
     last_name: '',
     bio: '',
     location: '',
-    birthday: ''
+    birth_date: ''
   });
 
     useEffect(() => {
@@ -135,7 +135,7 @@ export default function EditProfile() {
         </div>
       </div>
 
-      {/* Location and Birthday */}
+      {/* Location and birth_date */}
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
@@ -158,15 +158,15 @@ export default function EditProfile() {
         <div className="w-full md:w-1/2 px-3">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="birthday"
+            htmlFor="birth_date"
           >
-            Birthday
+            birth_date
           </label>
           <input
-            id="birthday"
-            name="birthday"
+            id="birth_date"
+            name="birth_date"
             type="date"
-            value={profile.birthday}
+            value={profile.birth_date}
             onChange={handleChange}
             className="appearance-none block w-full bg-white text-gray-700 border border-slate-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-700"
           />

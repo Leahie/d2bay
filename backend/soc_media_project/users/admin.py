@@ -9,12 +9,12 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     form = CustomUserChangeForm
 
-    list_display = ("username", "email", "is_staff", "is_active",)
+    list_display = ("username", "email", "is_staff", "is_active")
     list_filter = ("is_staff", "is_active")
 
     fieldsets = (
         (None, {"fields": ("username", "email", "password")}),
-        ("Personal Info", {"fields": ("first_name", "last_name", "birth_date", "profile_picture", "bio", "location", "interests")}),
+        ("Personal Info", {"fields": ("first_name", "last_name")}),  # Remove profile fields
         ("Permissions", {"fields": ("is_staff", "is_active", "is_superuser", "groups", "user_permissions")}),
         ("Important dates", {"fields": ("last_login", "date_joined")}),
     )
@@ -22,12 +22,8 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             "classes": ("wide",),
-            "fields": ("username", "email", "password1", "password2", "first_name", "last_name", "birth_date", "profile_picture", "bio", "location", "interests"),
+            "fields": ("username", "email", "password1", "password2", "first_name", "last_name"),  # Remove profile fields
         }),
     )
-
-    search_fields = ("username", "email", "first_name", "last_name")   
-    ordering = ("username",)
-
 # Register your models here.
 admin.site.register(CustomUser, CustomUserAdmin)

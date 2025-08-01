@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # My Apps
     'users',
     'core',
+    'core_social',
     'api',
 ]
 
