@@ -21,5 +21,6 @@ from api.views import MyTokenObtainPairView
 urlpatterns = [
     path('users/', include('users.urls')),
     path('api/', include('api.urls')),
+    path('core_social/', include('core_social.urls')),
     path('admin/', admin.site.urls),
 ]
