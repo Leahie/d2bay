@@ -111,14 +111,14 @@ class TradeSerializer(serializers.ModelSerializer):
             "comments_count",
         )
 
-class PostListSerializer(TradeSerializer):
+class TradeListSerializer(TradeSerializer):
     liked_by_user = serializers.BooleanField(read_only=True)
 
     class Meta(TradeSerializer.Meta):
         fields = TradeSerializer.Meta.fields + ("liked_by_user",)
 
 
-class PostDetailSerializer(TradeSerializer):
+class TradeDetailSerializer(TradeSerializer):
     liked_by_user = serializers.BooleanField(read_only=True)
     comments = CommentSerializer(many=True, read_only=True)
     likes = LikeSerializer(many=True, read_only=True)
